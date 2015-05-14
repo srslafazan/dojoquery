@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DojoQuery</title>
+</head>
+<body>
+    <button id="dojobutton">DojoButton</button>
+        <script type='text/javascript'>
+
+        (function (){
+            $Dojo = function (elementid){
+                var element = document.getElementById(elementid);
+
+                element.click = function(callback){
+                    element.addEventListener("click", function(){
+                        callback();
+                    });
+                };
+
+                element.hover = function(incallback, outcallback){
+                    element.addEventListener("mouseenter", function(){
+                        incallback();
+                    });
+                    element.addEventListener("mouseout", function(){
+                        outcallback();
+                    });
+                };
+                return element;
+            };
+
+            return $Dojo;
+        })();
+
+        $Dojo('dojobutton').click(function(){
+            console.log("clicked!!");
+        });
+
+        $Dojo('dojobutton').hover(
+            function(){
+                console.log("mouseenter");
+            }, 
+            function(){
+                    console.log('mouseout!');
+            }
+        );
+        
+    </script>
+</body>
+</html>
